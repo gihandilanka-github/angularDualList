@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="test">
+
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="test.js"></script>
+<script src="jquery-2.1.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div ng-controller="DemoCtrl">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <input type="text" class="form-control" placeholder="Filter" ng-model="searchName">
+            <select ng-model="availableTestAccount" class="form-control" multiple="multiple" ng-options="item as item.Name for item in availableAccounts | filter:searchName ">
+                <option value="">Select Account</option>
+            </select>
+            <div class="btn-group buttons">     
+                <button type="button" ng-click="moveAll()" class="btn moveall btn-default" title="Move all">
+                    <i class="glyphicon glyphicon-arrow-right"></i>       
+                    <i class="glyphicon glyphicon-arrow-right"></i>     
+                </button>     
+                <button type="button" ng-click="moveSelected()" class="btn move btn-default" title="Move selected">       
+                <i class="glyphicon glyphicon-arrow-right"></i>     
+                </button>   
+            </div>
+        </div>
+    
+         <div class="col-sm-6 col-md-6 col-lg-6">
+            <input type="text" class="form-control" placeholder="Filter" ng-model="searchNames">
+            <select ng-model="selectedTestAccount" ng-change="update()" class="form-control" multiple="multiple" ng-options="item as item.Name for item in testAccounts  | filter:searchNames ">
+                <option value="">Select Account</option>
+            </select>
+            <div class="btn-group buttons">     
+                <button type="button" class="btn remove btn-default" title="Remove selected">       
+                    <i class="glyphicon glyphicon-arrow-left"></i>     
+                </button>     
+                <button type="button" class="btn removeall btn-default" title="Remove all">       
+                    <i class="glyphicon glyphicon-arrow-left"></i>       
+                    <i class="glyphicon glyphicon-arrow-left"></i>     
+                </button>   
+            </div>
+        </div>
+    </div>
+</div>
+<h1 ng-model="selectedText"><pre>{{selectedTestAccount | json}}</pre></h1>
+
+
+</body>
+</html>
